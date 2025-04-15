@@ -6,7 +6,7 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:22:45 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/15 07:49:54 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 15:29:31 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	free_map(char **map)
 void	exit_map(char **map)
 {
 	write(1, "Error\n", 6);
-	write(1, "map invalid\n", 13);
+	write(1, "invalid map\n", 12);
 	free_map(map);
 	exit(1);
 }

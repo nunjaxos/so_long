@@ -6,29 +6,11 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:21:55 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/15 08:22:27 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 14:53:47 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	check_nl(t_window *mlx)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = mlx->map_len;
-	while (i < j)
-	{
-		if (mlx->map[i][0] == '\n')
-		{
-			write(1, "Error\n", 6);
-			exit(1);
-		}
-		i++;
-	}
-}
 
 int	main(int ac, char **av)
 {

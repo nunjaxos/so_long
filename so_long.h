@@ -6,7 +6,7 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:21:48 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/15 08:26:02 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 13:09:23 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ typedef struct s_window
 
 			//parsing
 void		parsing(char *path_file, t_window *mlx, t_map *mp);
-void		check_nl(t_window *mlx);
 int			len_map(char *path_file);
 char		**get_map(char *path_file, int len, t_map *mp);
 int			len_frst_line(char **map, t_map *mp);
@@ -92,14 +91,13 @@ void		new_win(t_window *mlx, char **map);
 int			height_map(char **map);
 int			width_map(char **map);
 void		load_images(t_window *mlx);
-void		new_win(t_window *mlx, char **map);
 void		draw_map(t_window *mlx, char **map);
 			//moves
+int			key_press(int keycode, t_window *mlx);
 void		mov_left(t_window *mlx);
 void		mov_right(t_window *mlx);
 void		mov_up(t_window *mlx);
 void		mov_down(t_window *mlx);
-int			key_press(int keycode, t_window *mlx);
 			//helper_functions
 void		check_element_validity(char **a, t_map *mp, char **map);
 void		ft_bzero(void *s, size_t n);

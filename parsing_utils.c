@@ -6,7 +6,7 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:22:08 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/15 07:45:53 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 12:18:20 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	check_word(char **map, t_map *mp)
 	i = 0;
 	while (i < len_m)
 	{
-		if (map[i][len_line - 1] != '1' || map[i][0] != '1')
+		if (map[i][0] != '1' || map[i][len_line - 1] != '1')
 			free_exit(map, mp);
 		i++;
 	}
