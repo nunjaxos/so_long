@@ -6,11 +6,21 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:21:55 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/15 07:44:16 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 08:07:52 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	check_element_validity(char **a, t_map *mp, char **map)
+{
+	if (check_element_copy(a, mp) == 1)
+	{
+		free(mp);
+		free_map(a);
+		exit_map(map);
+	}
+}
 
 void	draw_map(t_window *mlx, char **map)
 {
@@ -63,20 +73,19 @@ int	key_press(int keycode, t_window *mlx)
 	draw_map(mlx, mlx->map);
 	return (0);
 }
-void check_nl(t_window *mlx)
+
+void	check_nl(t_window *mlx)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
-	
 	j = mlx->map_len;
-	while(i < j)
+	while (i < j)
 	{
-		printf("%d\n",i);
-		if(mlx->map[i][0] == '\n')
+		if (mlx->map[i][0] == '\n')
 		{
-			write(1 ,"Error\n", 6);
+			write(1, "Error\n", 6);
 			exit(1);
 		}
 		i++;

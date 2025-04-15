@@ -6,7 +6,7 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:22:02 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/15 07:42:55 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 08:08:23 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,19 +109,14 @@ void	parsing(char *path_file, t_window *mlx, t_map *mp)
 	}
 	check_dot_ber(path_file, mp);
 	mlx->map_len = len_map(path_file);
-	mlx->map = get_map(path_file, mlx->map_len , mp);
+	mlx->map = get_map(path_file, mlx->map_len, mp);
 	check_word(mlx->map, mp);
 	check_word_two(mlx->map, path_file, mp);
 	check_nonvalid(mlx->map, mp);
 	check_element(mlx->map, mp);
 	a = map_copy(mlx->map, path_file);
 	flood_fill(mp->pos_x, mp->pos_y, a);
-	if (check_element_copy(a, mp) == 1)
-	{
-		free(mp);
-		free_map(a);
-		exit_map(mlx->map);
-	}
+	check_element_validity(a, mp, mlx->map);
 	close(fd);
 	free_map(a);
 }

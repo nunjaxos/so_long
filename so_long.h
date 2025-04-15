@@ -6,7 +6,7 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:21:48 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/15 07:46:32 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 08:08:27 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ typedef struct s_window
 # define MAX_WIDTH 960
 # define TILE_SIZE 32
 
-
 			//parsing
 void		parsing(char *path_file, t_window *mlx, t_map *mp);
 void		check_nl(t_window *mlx);
@@ -83,7 +82,7 @@ void		check_word(char **map, t_map *mp);
 void		check_word_two(char **map, char *path_file, t_map *mp);
 //			clean_functions
 void		clear_imag(t_window *mlx);
-void	free_exit(char **map, t_map *mp);
+void		free_exit(char **map, t_map *mp);
 void		exit_map(char **map);
 void		free_map(char **map);
 void		clear_win(t_window *mlx);
@@ -101,6 +100,7 @@ void		mov_right(t_window *mlx);
 void		mov_up(t_window *mlx);
 void		mov_down(t_window *mlx);
 			//helper_functions
+void		check_element_validity(char **a, t_map *mp, char **map);
 void		ft_bzero(void *s, size_t n);
 char		*get_next_line(int fd);			
 int			ft_strstr(char *str, char *to_find);			
