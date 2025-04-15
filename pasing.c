@@ -6,7 +6,7 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:22:02 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/15 08:08:23 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 08:29:46 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,28 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
+	char	c;
+	int		mod;
+
+	mod = 1;
+	if (n == -2147483648)
 	{
-		if (n == -2147483648)
-		{
-			ft_putnbr_fd(n / 10, fd);
-			ft_putchar_fd('8', fd);
-		}
-		else if (n < 0)
-		{
-			ft_putchar_fd('-', fd);
-			ft_putnbr_fd(-n, fd);
-		}
-		else if (n > 9)
-		{
-			ft_putnbr_fd(n / 10, fd);
-			ft_putnbr_fd(n % 10, fd);
-		}
-		else if (n <= 9)
-		{
-			ft_putchar_fd((n + '0'), fd);
-		}
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	else if (n < 0)
+	{
+		write(fd, "-", 1);
+		n = -n;
+	}
+	while (n / mod >= 10)
+		mod *= 10;
+	while (mod > 0)
+	{
+		c = (n / mod) + 48;
+		write(fd, &c, 1);
+		n %= mod;
+		mod /= 10;
 	}
 }
 

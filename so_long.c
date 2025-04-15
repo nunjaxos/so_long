@@ -6,73 +6,11 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:21:55 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/15 08:07:52 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 08:22:27 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	check_element_validity(char **a, t_map *mp, char **map)
-{
-	if (check_element_copy(a, mp) == 1)
-	{
-		free(mp);
-		free_map(a);
-		exit_map(map);
-	}
-}
-
-void	draw_map(t_window *mlx, char **map)
-{
-	int (pos_x), (pos_y);
-	pos_x = 0;
-	while (map[pos_x])
-	{
-		pos_y = 0;
-		while (map[pos_x][pos_y])
-		{
-			if (map[pos_x][pos_y] == '1')
-				mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->bg, pos_y
-					* 32, pos_x * 32);
-			else if (map[pos_x][pos_y] == 'P')
-				mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->player,
-					pos_y * 32, pos_x * 32);
-			else if (map[pos_x][pos_y] == 'C')
-				mlx_put_image_to_window(mlx->mlx, mlx->window,
-					mlx->collectibles, pos_y * 32, pos_x * 32);
-			else if (map[pos_x][pos_y] == 'E')
-			{
-				mlx->mp->pos_x_e = pos_x;
-				mlx->mp->pos_y_e = pos_y;
-			}
-			pos_y++;
-		}
-		pos_x++;
-	}
-}
-
-int	key_press(int keycode, t_window *mlx)
-{
-	if (keycode == ESC)
-		clear_win(mlx);
-	if (keycode == D)
-		mov_right(mlx);
-	else if (keycode == W)
-		mov_up(mlx);
-	else if (keycode == A)
-		mov_left(mlx);
-	else if (keycode == S)
-		mov_down(mlx);
-	mlx_clear_window(mlx->mlx, mlx->window);
-	if (mlx->mp->c == 0)
-	{
-		mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->exit,
-			mlx->mp->pos_y_e * 32, mlx->mp->pos_x_e * 32);
-		mlx->map[mlx->mp->pos_x_e][mlx->mp->pos_y_e] = 'E';
-	}
-	draw_map(mlx, mlx->map);
-	return (0);
-}
 
 void	check_nl(t_window *mlx)
 {

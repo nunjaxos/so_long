@@ -6,28 +6,20 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:22:27 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/15 07:53:02 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 08:23:14 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	height_map(char **map)
+void	check_element_validity(char **a, t_map *mp, char **map)
 {
-	int	i;
-
-	i = 0;
-	while (map[i])
-		i++;
-	return (i);
-}
-
-int	width_map(char **map)
-{
-	t_window	wi;
-
-	wi.width = ft_strlen(map[0]) - 1;
-	return (wi.width);
+	if (check_element_copy(a, mp) == 1)
+	{
+		free(mp);
+		free_map(a);
+		exit_map(map);
+	}
 }
 
 void	ft_bzero(void *s, size_t n)
@@ -44,44 +36,43 @@ void	ft_bzero(void *s, size_t n)
 	}
 }
 
-void	load_images(t_window *mlx)
+void	ft_putchar_fd(char c, int fd)
 {
-	int	a;
-	int	b;
-
-	mlx->player = mlx_xpm_file_to_image(mlx->mlx, "text/idle_00.xpm", &a, &b);
-	mlx->bg = mlx_xpm_file_to_image(mlx->mlx, "text/wall.xpm", &a, &b);
-	mlx->exit = mlx_xpm_file_to_image(mlx->mlx, "text/portal.xpm", &a, &b);
-	mlx->collectibles = mlx_xpm_file_to_image(mlx->mlx, "text/coins.xpm",
-			&a, &b);
-	if (!mlx->player || !mlx->collectibles || !mlx->exit || !mlx->bg)
-	{
-		free(mlx->mp);
-		free_map(mlx->map);
-		clear_imag(mlx);
-		mlx_destroy_window(mlx->mlx, mlx->window);
-		mlx_destroy_display(mlx->mlx);
-		free(mlx->mlx);
-		write(1, "Error\n", 6);
-		exit(1);
-	}
+	write(fd, &c, 1);
 }
 
-void	new_win(t_window *mlx, char **map)
+char	*ft_strdup(const char *s)
 {
-	mlx->height = height_map(map);
-	mlx->width = width_map(map);
-	if (mlx->height > MAX_HEIGHT || mlx->width > MAX_WIDTH)
+	char	*d;
+	size_t	i;
+
+	i = 0;
+	d = (char *)malloc(sizeof(char) * ft_strlen((char *)s) + 1);
+	if (!d)
+		return (NULL);
+	while (s[i])
 	{
-		free(mlx->mp);
-		free_map(mlx->map);
-		mlx_destroy_display(mlx->mlx);
-		free(mlx->mlx);
-		write(1, "Error: map is too big\n", 23);
-		exit(1);
+		d[i] = s[i];
+		i++;
 	}
-	mlx->window = mlx_new_window(mlx->mlx, mlx->width * TILE_SIZE,
-			mlx->height * TILE_SIZE, "so_long");
-	load_images(mlx);
-	draw_map(mlx, map);
+	d[i] = '\0';
+	return (d);
+}
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t			i;
+	unsigned char	*p1;
+	unsigned char	*p2;
+
+	p1 = (unsigned char *)s1;
+	p2 = (unsigned char *)s2;
+	i = 0;
+	while (i < n && (p1[i] || p2[i]))
+	{
+		if (p1[i] != p2[i])
+			return (p1[i] - p2[i]);
+		i++;
+	}
+	return (0);
 }

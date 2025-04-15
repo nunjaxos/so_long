@@ -6,7 +6,7 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:21:48 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/15 08:08:27 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 08:26:02 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void		mov_left(t_window *mlx);
 void		mov_right(t_window *mlx);
 void		mov_up(t_window *mlx);
 void		mov_down(t_window *mlx);
+int			key_press(int keycode, t_window *mlx);
 			//helper_functions
 void		check_element_validity(char **a, t_map *mp, char **map);
 void		ft_bzero(void *s, size_t n);
