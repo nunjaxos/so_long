@@ -6,7 +6,7 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:21:55 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/14 23:29:36 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 07:44:16 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,25 @@ int	key_press(int keycode, t_window *mlx)
 	draw_map(mlx, mlx->map);
 	return (0);
 }
+void check_nl(t_window *mlx)
+{
+	int	i;
+	int	j;
+	
+	i = 0;
+	
+	j = mlx->map_len;
+	while(i < j)
+	{
+		printf("%d\n",i);
+		if(mlx->map[i][0] == '\n')
+		{
+			write(1 ,"Error\n", 6);
+			exit(1);
+		}
+		i++;
+	}
+}
 
 int	main(int ac, char **av)
 {
@@ -80,12 +99,12 @@ int	main(int ac, char **av)
 		free(mlx.mp);
 		exit(1);
 	}
-	parsi_map(av[1], &mlx, mlx.mp);
+	parsing(av[1], &mlx, mlx.mp);
 	mlx.mlx = mlx_init();
 	if (!mlx.mlx)
 	{
 		perror("Allocation");
-		return (2);
+		return (1);
 	}
 	new_win(&mlx, mlx.map);
 	mlx_hook(mlx.window, 2, 1L << 0, &key_press, &mlx);

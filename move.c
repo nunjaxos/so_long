@@ -6,7 +6,7 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:22:23 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/14 23:22:24 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 02:52:31 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	mov_down(t_window *mlx)
 		mlx->mp->pos_y++;
 		mlx->moves++;
 		ft_putnbr_fd(mlx->moves, 1);
-		ft_putstr_fd(" move\r", 1);
+		ft_putstr_fd(" move\n", 1);
 	}
 }
 
@@ -48,7 +48,7 @@ void	mov_left(t_window *mlx)
 		mlx->mp->pos_x--;
 		mlx->moves++;
 		ft_putnbr_fd(mlx->moves, 1);
-		ft_putstr_fd(" move\r", 1);
+		ft_putstr_fd(" move\n", 1);
 	}
 }
 
@@ -68,7 +68,7 @@ void	mov_right(t_window *mlx)
 		mlx->mp->pos_x++;
 		mlx->moves++;
 		ft_putnbr_fd(mlx->moves, 1);
-		ft_putstr_fd(" move\r", 1);
+		ft_putstr_fd(" move\n", 1);
 	}
 }
 
@@ -88,7 +88,7 @@ void	mov_up(t_window *mlx)
 		mlx->mp->pos_y--;
 		mlx->moves++;
 		ft_putnbr_fd(mlx->moves, 1);
-		ft_putstr_fd(" move\r", 1);
+		ft_putstr_fd(" move\n", 1);
 	}
 }
 

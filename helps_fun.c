@@ -6,7 +6,7 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:22:27 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/14 23:22:28 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 02:38:38 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	load_images(t_window *mlx)
 	int	a;
 	int	b;
 
-	mlx->player = mlx_xpm_file_to_image(mlx->mlx, "textures/pac.xpm", &a, &b);
+	mlx->player = mlx_xpm_file_to_image(mlx->mlx, "textures/idle_00.xpm", &a, &b);
 	mlx->bg = mlx_xpm_file_to_image(mlx->mlx, "textures/wall.xpm", &a, &b);
 	mlx->exit = mlx_xpm_file_to_image(mlx->mlx, "textures/portal.xpm", &a, &b);
 	mlx->collectibles = mlx_xpm_file_to_image(mlx->mlx, "textures/coins.xpm",

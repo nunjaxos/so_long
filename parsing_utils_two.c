@@ -6,7 +6,7 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:22:16 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/14 23:22:17 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 07:46:16 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	loop_map(char *r_l_line, int fd, char **map, t_map *mp)
 {
 	while (r_l_line)
 	{
-		if (r_l_line[0] != '\n')
+		if (r_l_line[0] != '\0')
 		{
 			free(r_l_line);
 			free(mp);
@@ -54,7 +54,6 @@ char	**get_map(char *path_file, int len, t_map *mp)
 	int		i;
 	char	*r_l_line;
 	char	**map;
-
 	fd = open(path_file, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
@@ -116,10 +115,7 @@ void	check_nonvalid(char **map, t_map *mp)
 		{
 			if (map[i][j] != '0' && map[i][j] != '1' && map[i][j] != '\n'
 				&& map[i][j] != 'C' && map[i][j] != 'E' && map[i][j] != 'P')
-			{
-				free(mp);
-				exit_map(map);
-			}
+						free_exit(map, mp);
 			j++;
 		}
 		i++;

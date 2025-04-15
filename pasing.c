@@ -6,7 +6,7 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:22:02 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/14 23:29:51 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 07:42:55 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	error_fd(void)
 	exit(1);
 }
 
-void	parsi_map(char *path_file, t_window *mlx, t_map *mp)
+void	parsing(char *path_file, t_window *mlx, t_map *mp)
 {
 	int		fd;
 	char	**a;
@@ -108,7 +108,8 @@ void	parsi_map(char *path_file, t_window *mlx, t_map *mp)
 		error_fd();
 	}
 	check_dot_ber(path_file, mp);
-	mlx->map = get_map(path_file, len_map(path_file), mp);
+	mlx->map_len = len_map(path_file);
+	mlx->map = get_map(path_file, mlx->map_len , mp);
 	check_word(mlx->map, mp);
 	check_word_two(mlx->map, path_file, mp);
 	check_nonvalid(mlx->map, mp);

@@ -6,7 +6,7 @@
 /*   By: abhmidat <abhmidat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:21:48 by abhmidat          #+#    #+#             */
-/*   Updated: 2025/04/14 23:29:44 by abhmidat         ###   ########.fr       */
+/*   Updated: 2025/04/15 07:46:32 by abhmidat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,8 @@ typedef struct s_window
 	char	**map;
 	int		width;
 	int		height;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
 	int		moves;
+	int		map_len;
 	void	*collectibles;
 	int		x;
 	int		y;
@@ -58,6 +56,7 @@ typedef struct s_window
 	t_map	*mp;
 }			t_window;
 
+		//keys
 # define ESC 65307
 # define W 119
 # define A 97
@@ -68,37 +67,45 @@ typedef struct s_window
 # define MAX_WIDTH 960
 # define TILE_SIZE 32
 
-int			ft_strlen(const char *s);
-void		clear_imag(t_window *mlx);
-char		*get_next_line(int fd);
-void		parsi_map(char *path_file, t_window *mlx, t_map *mp);
+
+			//parsing
+void		parsing(char *path_file, t_window *mlx, t_map *mp);
+void		check_nl(t_window *mlx);
 int			len_map(char *path_file);
 char		**get_map(char *path_file, int len, t_map *mp);
 int			len_frst_line(char **map, t_map *mp);
-void		exit_map(char **map);
-void		free_map(char **map);
-int			ft_strstr(char *str, char *to_find);
 void		check_dot_ber(char *path_file, t_map *mp);
 void		check_nonvalid(char **map, t_map *mp);
 char		**map_copy(char **map, char *path_file);
-char		*ft_strdup(const char *s);
 void		flood_fill(int x, int y, char **map);
 int			check_element_copy(char **map, t_map *mp);
 void		check_word(char **map, t_map *mp);
 void		check_word_two(char **map, char *path_file, t_map *mp);
-void		new_win(t_window *mlx, char **map);
+//			clean_functions
+void		clear_imag(t_window *mlx);
+void	free_exit(char **map, t_map *mp);
+void		exit_map(char **map);
+void		free_map(char **map);
 void		clear_win(t_window *mlx);
 int			sed(t_window *mlx);
+			//display
+void		new_win(t_window *mlx, char **map);
 int			height_map(char **map);
 int			width_map(char **map);
-void		ft_bzero(void *s, size_t n);
 void		load_images(t_window *mlx);
 void		new_win(t_window *mlx, char **map);
 void		draw_map(t_window *mlx, char **map);
+			//moves
 void		mov_left(t_window *mlx);
 void		mov_right(t_window *mlx);
 void		mov_up(t_window *mlx);
 void		mov_down(t_window *mlx);
+			//helper_functions
+void		ft_bzero(void *s, size_t n);
+char		*get_next_line(int fd);			
+int			ft_strstr(char *str, char *to_find);			
+char		*ft_strdup(const char *s);			
+int			ft_strlen(const char *s);
 void		ft_putstr_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 void		ft_putchar_fd(char c, int fd);
